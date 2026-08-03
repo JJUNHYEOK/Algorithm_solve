@@ -1,20 +1,20 @@
 import heapq
 
 def solution(scoville, K):
-    ans = 0
-
+    cnt = 0
     heapq.heapify(scoville)
-
+    
     while scoville[0] < K:
+        
         if len(scoville) < 2:
             return -1
-
+    
         first = heapq.heappop(scoville)
         second = heapq.heappop(scoville)
 
-        new = first + (second*2)
-        heapq.heappush(scoville, new)
+        mixed = first + (second * 2)
 
-        ans += 1
-
-    return ans
+        heapq.heappush(scoville, mixed)
+        cnt += 1
+    
+    return cnt
