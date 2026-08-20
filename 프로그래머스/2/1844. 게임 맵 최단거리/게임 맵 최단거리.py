@@ -1,33 +1,30 @@
 from collections import deque
 
 def solution(maps):
+
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
     n = len(maps)
-    m = len(maps[0])
-    visited = [[False]*m for _ in range(n)]
+    m = len(maps[0])    
 
     def bfs(x, y):
-        q = deque()
-        q.append((x, y, 1))
-        visited[x][y] = True
-
-        dx = [-1, 1, 0, 0]
-        dy = [0, 0, -1, 1]
+        q = deque([(x, y)]) # deque 형태 기억하기
+        maps[x][y] = 1
 
         while q:
-                x, y, dist = q.popleft()
+            a, b = q.popleft()
 
-                if x == n-1 and y == m-1:
-                    return dist
+            for i in range(4):
+                nx = a+dx[i]
+                ny = b+dy[i]
 
-                for i in range(4):
-                    nx = x+dx[i]
-                    ny = y+dy[i]
+                if 0 <= nx <n and 0 <= ny < m:
+                    if maps[nx][ny] == 1:
+                        q.append((nx, ny))
+                        maps[nx][ny] = maps[a][b] + 1
 
-                    if 0 <= nx < n and 0 <= ny < m:
-                        if maps[nx][ny] == 1 and not visited[nx][ny]:
-                            visited[nx][ny] = True
-                            q.append((nx, ny, dist+1))
+        ans = maps[n-1][m-1]
 
-        return -1
+        return ans if ans > 1 else -1 # 예외처리 주의
 
-    return bfs(0,0)
+    return bfs(0, 0)
