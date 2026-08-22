@@ -5,8 +5,7 @@ def solution(begin, target, words):
     if target not in words:
         return 0
 
-    q = deque()
-    q.append((begin, 0))
+    q = deque([(begin, 0)])
     visited = set([begin])
 
     while q:
