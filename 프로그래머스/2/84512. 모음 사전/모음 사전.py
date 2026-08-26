@@ -1,17 +1,17 @@
 def solution(word):
-    a = ['A', 'E', 'I', 'O', 'U']
-    cmp = []
+    ex = ['A', 'E', 'I', 'O', 'U']
+    dic = []
 
     def dfs(cur):
         if cur:
-            cmp.append(cur)
+            dic.append(cur)
 
         if len(cur) == 5:
             return
 
-        for w in a:
-            dfs(cur+w)
-            
+        for e in ex:
+            dfs(cur + e)
+
     dfs("")
 
-    return cmp.index(word) + 1
+    return dic.index(word) + 1
