@@ -1,8 +1,17 @@
+from collections import deque
+
 def solution(arr):
-    ans = []
+    q = deque(arr)
+    stk = []
 
-    for num in arr:
-        if not ans or ans[-1] != num:
-            ans.append(num)
+    for i in range(len(arr)):
+        cur = q.popleft()
 
-    return ans      
+        if not stk:
+            stk.append(cur)
+
+        else:
+            if stk[-1] != cur:
+                stk.append(cur)
+
+    return stk    
