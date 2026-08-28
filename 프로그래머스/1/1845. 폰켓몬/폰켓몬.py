@@ -1,12 +1,8 @@
 def solution(nums):
     
     N = len(nums)
-    goyu = len(set(nums))
+    var = len(set(nums))
     
-    ans = min(N//2, goyu)
+    ans = min(N//2 , var)
     
     return ans
-    
-    
-    
-    
