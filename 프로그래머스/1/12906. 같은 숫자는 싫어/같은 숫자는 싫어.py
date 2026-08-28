@@ -1,17 +1,18 @@
 from collections import deque
 
 def solution(arr):
-    q = deque(arr)
     stk = []
-
-    for i in range(len(arr)):
-        cur = q.popleft()
-
-        if not stk:
-            stk.append(cur)
-
+    N = len(arr)
+    stk.append(arr[0])
+    q = deque(arr)
+    
+    for i in range(1, N):
+        
+        if not stk or stk[-1] != arr[i]:
+            stk.append(arr[i])
+            
         else:
-            if stk[-1] != cur:
-                stk.append(cur)
-
-    return stk    
+            q.popleft()
+        
+    return stk
+    
