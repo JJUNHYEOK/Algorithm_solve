@@ -1,15 +1,21 @@
 def solution(prices):
 
-    ans = []
-    cnt = 0
+    n = len(prices)
+    ans = [0]*n
+    stk = []
 
-    for i in range(len(prices)):
-        for j in range(i+1, len(prices)):
-            cnt += 1
-            if prices[i] > prices[j]:
-                break
+    for i in range(n):
+        idx = i
+        price = prices[i]
 
-        ans.append(cnt)
-        cnt = 0
+        while stk and prices[stk[-1]] > price:
+            prev = stk.pop()
+            ans[prev] = idx - prev
+
+        stk.append(idx)
+
+    while stk:
+        prev = stk.pop()
+        ans[prev] = (n-1) - prev
 
     return ans
