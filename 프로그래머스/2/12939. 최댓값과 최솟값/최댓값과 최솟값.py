@@ -1,0 +1,5 @@
+def solution(s):
+
+    ans = list(map(int, s.split()))
+    
+    return str(min(ans)) + " " + str(max(ans))
