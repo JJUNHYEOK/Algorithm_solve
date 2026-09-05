@@ -1,18 +1,16 @@
-from collections import deque
-
 def solution(people, limit):
+
     people.sort()
-    q = deque(people)
     cnt = 0
-    
-    while q:
-        heavy = q.pop()
-        
-        if q:
-            if heavy + q[0] <= limit:
-                q.popleft()
-            
+    l = 0
+    r = len(people) - 1
+
+    while l <= r:
+        if people[l] + people[r] <= limit:
+            l += 1
+
+        r -= 1
         cnt += 1
-                
+
     return cnt
                 
