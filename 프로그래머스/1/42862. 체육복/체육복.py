@@ -1,16 +1,30 @@
 def solution(n, lost, reserve):
-    ans = 0
-    real_reserve = set(reserve) - set(lost)
-    real_lost = set(lost) - set(reserve)
-    
-    for student in sorted(real_lost):
-        if student - 1 in real_reserve:
-            real_reserve.remove(student-1)
-            
-        elif student + 1 in real_reserve:
-            real_reserve.remove(student+1)
-            
+
+    nn = [1]*(n+1)
+    cnt = 0
+
+    for num in reserve:
+        nn[num] = 2
+
+    for num in lost:
+        if num in reserve:
+            nn[num] = 1
+
         else:
-            n -= 1
-            
-    return n
+            nn[num] = 0
+
+    for i in range(1, n+1):
+        if nn[i] == 0:
+            if i > 1 and nn[i-1] == 2:
+                nn[i] = 1
+                nn[i-1] = 1
+
+            elif i < n and nn[i+1] == 2:
+                nn[i] = 1
+                nn[i+1] = 1
+
+    for n in nn:
+        if n >= 1:
+            cnt += 1
+
+    return cnt - 1
