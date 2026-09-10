@@ -1,28 +1,25 @@
 def solution(progresses, speeds):
 
-    remain = []
-    n = len(progresses)
+    days = []
 
-    for i in range(n):
-        if (100-progresses[i])%speeds[i] == 0:
-            remain.append((100-progresses[i])//speeds[i])
+    for i in range(len(progresses)):
+        if (100 - progresses[i])%speeds[i] == 0:
+            days.append((100 - progresses[i])//speeds[i])
 
         else:
-            remain.append((100-progresses[i])//speeds[i] + 1)
+            days.append((100 - progresses[i])//(speeds[i])+1)
 
-    # remain = [7, 3, 9]
-
-    cur = remain[0]
+    cur = days[0]
     cnt = 1
     ans = []
 
-    for i in range(1, n):
-        if remain[i] <= cur:
+    for i in range(1, len(progresses)):
+        if days[i] <= cur:
             cnt += 1
 
         else:
             ans.append(cnt)
-            cur = remain[i]
+            cur = days[i]
             cnt = 1
 
     ans.append(cnt)
