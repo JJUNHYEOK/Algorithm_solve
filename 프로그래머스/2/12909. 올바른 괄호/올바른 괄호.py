@@ -1,16 +1,23 @@
 def solution(s):
+
     stk = []
 
-    for char in s:
-        if char == '(':
-            stk.append(char)
+    for i in range(len(s)):
+        if not stk: 
+            if s[i] == '(':
+                stk.append(s[i])
+
+            else: return False
 
         else:
-            if not stk:
-                return False
-            stk.pop()
+            if s[i] == ')':
+                stk.pop()
 
-    if len(stk) == 0:
+            else:
+                stk.append(s[i])
+
+
+    if not stk:
         return True
 
     return False
