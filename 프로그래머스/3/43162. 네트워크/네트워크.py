@@ -1,21 +1,22 @@
 from collections import deque
 
 def solution(n, computers):
-    visited = [False]*n
-    cnt = 0
+
+    visited = [False]*(n+1)
 
     def bfs(start):
-        q = deque()
-        q.append((start))
         visited[start] = True
+        q = deque()
+        q.append(start)
 
         while q:
             cur = q.popleft()
 
             for i in range(n):
                 if not visited[i] and computers[cur][i] == 1:
-                    q.append((i))
+                    q.append(i)
                     visited[i] = True
+    cnt = 0
 
     for i in range(n):
         if not visited[i]:
