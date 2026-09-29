@@ -17,15 +17,8 @@ def solution(operations):
 
         if cmd == 'D' and val == 1:
             if q:
-                for j in range(len(q)):
-                    q[j] = -q[j]
-
-                heapq.heapify(q)
-                heapq.heappop(q)
-
-                for j in range(len(q)):
-                    q[j] = -q[j]
-
+                max_val = max(q)
+                q.remove(max_val)
                 heapq.heapify(q)
 
     if not q:
